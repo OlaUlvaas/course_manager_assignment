@@ -12,21 +12,29 @@ public class Student {
     private String address;
 
     public Student() {
-        id = StudentSequencer.nextStudentId();
-        // StudentCollectionRepository???
 
     }
 
-    public Student(String name, String email, String address) {
-        // StudentCollectionRepository???
-        this.id = StudentSequencer.nextStudentId();
+    public Student(String name, String email, String address){
+
+        this.name = name;
+        this.email = email;
+        this.address = address;
+    }
+    public Student(Integer id, String name, String email, String address) {
+
+        this.id = id;
         this.name = name;
         this.email = email;
         this.address = address;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {

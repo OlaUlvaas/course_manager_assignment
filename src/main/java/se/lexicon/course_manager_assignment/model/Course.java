@@ -14,14 +14,27 @@ public class Course {
     private Collection<Student> students;
 
     public Course() {
-        id = CourseSequencer.nextCourseId();
-        // CourseCollectionRepository???
-    }
 
-    public Course(String courseName, int weekDuration, Collection<Student> students) {
-        // CourseCollectionRepository???
-        this.id = CourseSequencer.nextCourseId();
+    }
+    public Course(String courseName, LocalDate startDate, int weekDuration) {
+
         this.courseName = courseName;
+        this.startDate = startDate;
+        this.weekDuration = weekDuration;
+
+    }
+    public Course(Integer id, String courseName, LocalDate startDate, int weekDuration) {
+
+        this.id = id;
+        this.courseName = courseName;
+        this.startDate = startDate;
+        this.weekDuration = weekDuration;
+
+    }
+    public Course(String courseName, LocalDate startDate, int weekDuration, Collection<Student> students) {
+
+        this.courseName = courseName;
+        this.startDate = startDate;
         this.weekDuration = weekDuration;
         this.students = students;
     }
@@ -37,8 +50,12 @@ public class Course {
         return status;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getCourseName() {

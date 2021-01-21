@@ -7,6 +7,7 @@ import se.lexicon.course_manager_assignment.model.Course;
 import se.lexicon.course_manager_assignment.model.Student;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -14,16 +15,31 @@ import java.util.List;
 public class ModelToDto implements Converters {
     @Override
     public StudentView studentToStudentView(Student student) {
-        return null;
+        if(student.equals(null)){
+            throw new IllegalArgumentException("Student Object is empty");
+        }
+        StudentView sv = new StudentView(student.getId(), student.getName(),
+                student.getEmail(), student.getAddress());
+        return sv;
     }
 
     @Override
     public CourseView courseToCourseView(Course course) {
-        return null;
+        if(course.equals(null)){
+            throw new IllegalArgumentException("Course Object is empty");
+        }
+        CourseView cv = new CourseView(course.getId(), course.getCourseName(),
+                course.getStartDate(), course.getWeekDuration(), studentsToStudentViews(course.getStudents()));
+        return cv;
     }
 
     @Override
     public List<CourseView> coursesToCourseViews(Collection<Course> courses) {
+        if(courses.equals(null)){
+            throw new IllegalArgumentException("Courses Objects is empty");
+        }
+        List<CourseView> cvList = new ArrayList<>();
+
         return null;
     }
 
