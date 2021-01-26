@@ -51,7 +51,7 @@ public class Course {
 
         boolean status = false;
         if(student.equals(null)){
-            throw new IllegalArgumentException("Student Object is empty");
+            return false;
         }
 
         students.add(student);
@@ -62,7 +62,7 @@ public class Course {
     public boolean unenrollStudents(Student student){
         boolean status = false;
         if(student.equals(null)){
-            throw new IllegalArgumentException("Student Object is empty");
+            return false;
         }
 
         students.remove(student);

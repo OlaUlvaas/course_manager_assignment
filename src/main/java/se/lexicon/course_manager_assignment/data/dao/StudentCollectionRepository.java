@@ -94,8 +94,8 @@ public class StudentCollectionRepository implements StudentDao {
     }
 
     @Override
-    public Collection<Student> findAll()
-    {
+    public Collection<Student> findAll() {
+
         List<Student> allStudent = new ArrayList<>();
 
         for(Student stn : students){
