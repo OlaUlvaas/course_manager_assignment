@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Student {
 
-    private Integer id;
+    private int id;
     private String name;
     private String email;
     private String address;
@@ -21,7 +21,7 @@ public class Student {
         this.email = email;
         this.address = address;
     }
-    public Student(Integer id, String name, String email, String address) {
+    public Student(int id, String name, String email, String address) {
 
         this.id = id;
         this.name = name;
@@ -29,11 +29,11 @@ public class Student {
         this.address = address;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

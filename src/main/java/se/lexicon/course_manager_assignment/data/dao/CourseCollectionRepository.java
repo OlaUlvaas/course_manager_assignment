@@ -25,10 +25,13 @@ public class CourseCollectionRepository implements CourseDao{
     public Course createCourse(String courseName, LocalDate startDate, int weekDuration) {
 
         int id = StudentSequencer.nextStudentId();
+
         Course course = new Course(id, courseName, startDate, weekDuration);
+
         if(course.equals(null)){
-            throw new IllegalArgumentException("Course Object Is Null");
+            return null;
         }
+        // Check for duplicate
         for(Course crs : courses){
             if(crs.getId() == course.getId()){
                 return null;
@@ -40,10 +43,13 @@ public class CourseCollectionRepository implements CourseDao{
 
     @Override
     public Course findById(int id) {
-        if (id <= 0){
-            throw new IllegalArgumentException("Not a correct id");
-        }
+
         Course course = new Course();
+
+        if (id <= 0){
+            return null;
+        }
+
         for (Course crs : courses){
             if (crs.getId() == id){
                 course = crs;
@@ -54,7 +60,13 @@ public class CourseCollectionRepository implements CourseDao{
 
     @Override
     public Collection<Course> findByNameContains(String name) {
+
         List<Course> courseList = new ArrayList<>();
+
+        if(name.equals(null)){
+            return null;
+        }
+
         for(Course crs : courses){
             if(crs.getCourseName().contains(name)){
                 courseList.add(crs);
@@ -66,11 +78,12 @@ public class CourseCollectionRepository implements CourseDao{
     @Override
     public Collection<Course> findByDateBefore(LocalDate end) {
 
-        if(end.equals(null)){
-            throw new IllegalArgumentException("Not a actual date");
-        }
         List<Course> actualCourses = new ArrayList<>();
         LocalDate courseEnd;
+
+        if(end.equals(null)){
+            return null;
+        }
 
         for(Course crs : courses){
             courseEnd = crs.getStartDate().plusDays(7 * crs.getWeekDuration());
@@ -84,12 +97,12 @@ public class CourseCollectionRepository implements CourseDao{
     @Override
     public Collection<Course> findByDateAfter(LocalDate start) {
 
-        if(start.equals(null)){
-            throw new IllegalArgumentException("Not a actual date");
-        }
-
         List<Course> actualCourses = new ArrayList<>();
         LocalDate courseStart;
+
+        if(start.equals(null)){
+            return null;
+        }
 
         for(Course crs : courses){
             courseStart = crs.getStartDate();
@@ -111,11 +124,12 @@ public class CourseCollectionRepository implements CourseDao{
 
     @Override
     public Collection<Course> findByStudentId(int studentId) {
-        if (studentId <= 0){
-            throw new IllegalArgumentException("Not a correct Student id");
-        }
         Student student = new Student();
         List<Course> theCourseArray = new ArrayList<>();
+        if (studentId <= 0){
+            return null;
+        }
+
         for (Course crs : courses) {
             for (Student stn : crs.getStudents()){
                 student = stn; // todo: Behövs denna?
@@ -131,9 +145,8 @@ public class CourseCollectionRepository implements CourseDao{
     public boolean removeCourse(Course course) {
         boolean status = false;
         if(course.equals(null)){
-            throw new IllegalArgumentException("Course is null");
+            return false;
         }
-        //Course courseToRemove = new Course(); todo: Behövs???
         Iterator<Course> iterator = courses.iterator();
         while(iterator.hasNext()){
             Course crs = iterator.next();

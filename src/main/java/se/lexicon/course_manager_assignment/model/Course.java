@@ -5,9 +5,10 @@ import se.lexicon.course_manager_assignment.data.sequencers.CourseSequencer;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Objects;
+import se.lexicon.course_manager_assignment.data.dao.CourseCollectionRepository.*;
 
 public class Course {
-    private Integer id;
+    private int id;
     private String courseName;
     private LocalDate startDate;
     private int weekDuration;
@@ -23,7 +24,7 @@ public class Course {
         this.weekDuration = weekDuration;
 
     }
-    public Course(Integer id, String courseName, LocalDate startDate, int weekDuration) {
+    public Course(int id, String courseName, LocalDate startDate, int weekDuration) {
 
         this.id = id;
         this.courseName = courseName;
@@ -38,23 +39,42 @@ public class Course {
         this.weekDuration = weekDuration;
         this.students = students;
     }
+    public Course(int id, String courseName, LocalDate startDate, int weekDuration, Collection<Student> students) {
+        this.id = id;
+        this.courseName = courseName;
+        this.startDate = startDate;
+        this.weekDuration = weekDuration;
+        this.students = students;
+    }
 
     public boolean enrollStudents(Student student){
+
         boolean status = false;
-        // todo:
+        if(student.equals(null)){
+            throw new IllegalArgumentException("Student Object is empty");
+        }
+
+        students.add(student);
+        status = true;
+
         return status;
     }
     public boolean unenrollStudents(Student student){
         boolean status = false;
-        // todo:
+        if(student.equals(null)){
+            throw new IllegalArgumentException("Student Object is empty");
+        }
+
+        students.remove(student);
+        status = true;
         return status;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

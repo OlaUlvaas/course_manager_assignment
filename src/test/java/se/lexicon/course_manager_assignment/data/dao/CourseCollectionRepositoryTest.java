@@ -6,8 +6,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import se.lexicon.course_manager_assignment.data.sequencers.CourseSequencer;
+import se.lexicon.course_manager_assignment.model.Student;
 
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @SpringBootTest(classes = {CourseCollectionRepository.class})
@@ -23,6 +25,7 @@ public class CourseCollectionRepositoryTest {
     }
 
     //Write your tests here
+
 
 
     @AfterEach

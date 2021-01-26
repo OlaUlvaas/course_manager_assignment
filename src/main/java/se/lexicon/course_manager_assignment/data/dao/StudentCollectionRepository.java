@@ -22,23 +22,34 @@ public class StudentCollectionRepository implements StudentDao {
     public Student createStudent(String name, String email, String address) {
 
         int id = StudentSequencer.nextStudentId();
+
         Student student = new Student(id, name, email, address);
-        if(student.equals(null)){
-            throw new IllegalArgumentException("Student Object Is Null");
+
+        if(student.equals(null)){ //todo: kanske "==" istället?
+            return null;
         }
+        // Check for duplicates
         for(Student stn : students){
-            if(stn.getId() == student.getId()){
+            if(stn.getEmail() == student.getEmail()){
                 return null;
             }
         }
         students.add(student);
         return student;
     }
+
     @Override
     public Student findByEmailIgnoreCase(String email) {
-        Student student;
+
+        if(email.equals(null)){
+            return null;
+        }
+
+//        Student student = new Student();
+        Student student = null;
+
         for(Student stn : students){
-            if(stn.getEmail().equals(email)){
+            if(stn.getEmail().equalsIgnoreCase(email)){
                 student = stn;
                 return student;
             }
@@ -48,7 +59,13 @@ public class StudentCollectionRepository implements StudentDao {
 
     @Override
     public Collection<Student> findByNameContains(String name) {
+
         List<Student> studentList = new ArrayList<>();
+
+        if(name.equals(null)){
+            return null;
+        }
+
         for(Student stn : students){
             if(stn.getName().contains(name)){
                 studentList.add(stn);
@@ -60,10 +77,13 @@ public class StudentCollectionRepository implements StudentDao {
 
     @Override
     public Student findById(int id) {
+
+        Student student = new Student();
+
         if (id <= 0){
-            throw new IllegalArgumentException("Not a correct id");
+            return null;
         }
-        Student student;
+
         for (Student stn : students){
             if (stn.getId() == id){
                 student = stn;
@@ -77,6 +97,7 @@ public class StudentCollectionRepository implements StudentDao {
     public Collection<Student> findAll()
     {
         List<Student> allStudent = new ArrayList<>();
+
         for(Student stn : students){
             allStudent.add(stn);
         }
@@ -85,11 +106,15 @@ public class StudentCollectionRepository implements StudentDao {
 
     @Override
     public boolean removeStudent(Student student) {
+
         boolean status = false;
+
         if(student.equals(null)){
-            throw new IllegalArgumentException("Student is null");
+            return false;
         }
+
         Iterator<Student> iterator = students.iterator();
+
         while(iterator.hasNext()){
             Student stn = iterator.next();
             if(stn.equals(student)){

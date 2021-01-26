@@ -4,6 +4,7 @@ package se.lexicon.course_manager_assignment.data.dao;
 
 
 import se.lexicon.course_manager_assignment.model.Course;
+import se.lexicon.course_manager_assignment.model.Student;
 
 import java.time.LocalDate;
 import java.util.Collection;
