@@ -168,9 +168,6 @@ public class StudentCollectionRepositoryTest {
         actualList.clear();
 
         assertEquals(studentList, actualList);
-
-
-
     }
 
     @AfterEach

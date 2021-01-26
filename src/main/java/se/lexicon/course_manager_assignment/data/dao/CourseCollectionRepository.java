@@ -2,11 +2,9 @@ package se.lexicon.course_manager_assignment.data.dao;
 
 
 
-import se.lexicon.course_manager_assignment.data.sequencers.CourseSequencer;
 import se.lexicon.course_manager_assignment.data.sequencers.StudentSequencer;
 import se.lexicon.course_manager_assignment.model.Course;
 import se.lexicon.course_manager_assignment.model.Student;
-import se.lexicon.course_manager_assignment.data.dao.StudentCollectionRepository;
 
 import java.time.LocalDate;
 import java.util.*;
